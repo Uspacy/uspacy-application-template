@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const { NODE_ENV } = process.env;
 const isDev = NODE_ENV === 'development';
@@ -47,6 +48,7 @@ module.exports = {
 			},
 			shared: deps,
 		}),
+		new Dotenv(),
 		...(isDev
 			? [
 					new HtmlWebpackPlugin({
@@ -56,7 +58,6 @@ module.exports = {
 					new ESLintPlugin({
 						files: ['./src'],
 						extensions: ['tsx', 'ts', 'jsx', 'js'],
-						errorOnUnmatchedPattern: false,
 						overrideConfigFile: path.resolve(__dirname, '.eslintrc.js'),
 					}),
 			  ]
