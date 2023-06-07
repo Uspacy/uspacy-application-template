@@ -13,7 +13,7 @@ module.exports = {
 	entry: './src/index.ts',
 	output: {
 		filename: 'bundle.js',
-		chankFilename: '[name].[contenthash:8].chunk.js',
+		chunkFilename: '[name].[contenthash:8].chunk.js',
 		path: path.resolve(__dirname, 'dist'),
 	},
 	mode: NODE_ENV,
