@@ -12,8 +12,8 @@ const appName = 'YOUR_APP_NAME';
 module.exports = {
 	entry: './src/index.ts',
 	output: {
-		filename: 'bundle.js',
-		chunkFilename: '[name].[contenthash:8].chunk.js',
+		filename: 'static/js/[name].[contenthash:8].js',
+		chunkFilename: 'static/js/[name].[contenthash:8].chunk.js',
 		path: path.resolve(__dirname, 'dist'),
 	},
 	mode: NODE_ENV,
@@ -47,7 +47,29 @@ module.exports = {
 				'./app': './src/components/App',
 				'./settings': './src/components/Settings',
 			},
-			shared: deps,
+			shared: {
+				...deps,
+				react: {
+					requiredVersion: deps.react,
+					singleton: true,
+				},
+				'react-dom': {
+					requiredVersion: deps['react-dom'],
+					singleton: true,
+				},
+				'@mui/material': {
+					requiredVersion: deps['@mui/material'],
+					singleton: true,
+				},
+				'@emotion/react': {
+					requiredVersion: deps['@emotion/react'],
+					singleton: true,
+				},
+				'@emotion/styled': {
+					requiredVersion: deps['@emotion/styled'],
+					singleton: true,
+				},
+			},
 		}),
 		new Dotenv(),
 		...(isDev

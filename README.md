@@ -19,14 +19,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 Your app is ready to be deployed!
 
-This template contains the basic version of the Uspacy marketplace application. The main configuration file is `webpack.config.js`. To specify the modules that need to be rendered in the Uspacy interface, you need to list them in the exposes field. Specify the name of your application in Latin characters in the `appName` constant. Develop the frontend part of your application and configure it accordingly. The modules should export a function called `start` that will render your component into the element passed as an argument to the function.
-
-### Arguments `start` function
-
-| Option   | Type          | Default   |
-| -------- | ------------- | --------- |
-| el       | HTMLElement   |
-| settings | IUserSettings | undefined |
+This template contains the basic version of the Uspacy marketplace application. The main configuration file is `webpack.config.js`. To specify the modules that need to be rendered in the Uspacy interface, you need to list them in the exposes field. Specify the name of your application in Latin characters in the `appName` constant. Develop the frontend part of your application and configure it accordingly. Modules should export a default component that will be rendered on the Uspacy portal.
 
 ### Example
 
@@ -53,11 +46,6 @@ const Settings: React.FC<IProps> = () => {
 };
 
 export default Settings;
-
-export const start = (el: HTMLElement, settings?: IUserSettings) => {
-	const root = createRoot(el);
-	root.render(<Settings userSettings={settings} />);
-};
 ```
 
 You need to create a `.env` file and add the necessary environment variables as specified in the `.env.template` file. The template file contains basic variables required for working with this template. You can add any additional variables required for your application to function properly.

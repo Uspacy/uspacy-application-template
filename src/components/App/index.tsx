@@ -1,8 +1,6 @@
 import Box from '@mui/material/Box';
 import React from 'react';
-import { createRoot } from 'react-dom/client';
 
-import { IUserSettings } from '../../models/userSettings';
 import { IProps } from './types';
 
 const App: React.FC<IProps> = () => {
@@ -11,6 +9,7 @@ const App: React.FC<IProps> = () => {
 			sx={{
 				display: 'flex',
 				justifyContent: 'center',
+				color: (theme) => theme.palette.primary.main,
 			}}
 		>
 			App
@@ -19,8 +18,3 @@ const App: React.FC<IProps> = () => {
 };
 
 export default App;
-
-export const start = (el: HTMLElement, settings?: IUserSettings) => {
-	const root = createRoot(el);
-	root.render(<App userSettings={settings} />);
-};

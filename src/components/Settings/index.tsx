@@ -2,11 +2,9 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
-import { createRoot } from 'react-dom/client';
 
 import { api } from '../../helpers/api';
 import { ISettings } from '../../models/settings';
-import { IUserSettings } from '../../models/userSettings';
 import { IProps } from './types';
 
 const Settings: React.FC<IProps> = () => {
@@ -76,8 +74,3 @@ const Settings: React.FC<IProps> = () => {
 };
 
 export default Settings;
-
-export const start = (el: HTMLElement, settings?: IUserSettings) => {
-	const root = createRoot(el);
-	root.render(<Settings userSettings={settings} />);
-};
