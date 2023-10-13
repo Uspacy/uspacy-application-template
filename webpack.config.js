@@ -1,3 +1,4 @@
+require('dotenv').config();
 const deps = require('./package.json').dependencies;
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -7,7 +8,7 @@ const Dotenv = require('dotenv-webpack');
 
 const { NODE_ENV } = process.env;
 const isDev = NODE_ENV === 'development';
-const appName = 'YOUR_APP_NAME';
+const appName = 'UspacyBirthdayWidget';
 
 module.exports = {
 	entry: './src/index.ts',
@@ -21,6 +22,18 @@ module.exports = {
 		hot: true,
 		open: true,
 		port: 8080,
+		proxy: {
+			'/': {
+				target: process.env.PROXY_PORTAL_URL,
+				secure: false,
+				changeOrigin: true,
+				bypass: function (req) {
+					if (req.url.startsWith('/static')) {
+						return req.url;
+					}
+				},
+			},
+		},
 	},
 	devtool: 'source-map',
 	module: {
@@ -67,6 +80,22 @@ module.exports = {
 				},
 				'@emotion/styled': {
 					requiredVersion: deps['@emotion/styled'],
+					singleton: true,
+				},
+				'@uspacy/store': {
+					requiredVersion: deps['@uspacy/store'],
+					singleton: true,
+				},
+				'@uspacy/sdk': {
+					requiredVersion: deps['@uspacy/sdk'],
+					singleton: true,
+				},
+				'@reduxjs/toolkit': {
+					requiredVersion: deps['@reduxjs/toolkit'],
+					singleton: true,
+				},
+				'react-redux': {
+					requiredVersion: deps['react-redux'],
 					singleton: true,
 				},
 			},

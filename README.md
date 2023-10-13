@@ -12,6 +12,29 @@ Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
+Set up your device to install private packages.
+
+Navigate to the [page](https://github.com/settings/tokens) (GitHub → Settings → Developer Settings → Personal access tokens).
+
+Click "Generate a new token."
+
+Generate a token with full `repo` and `read:packages` permissions as shown in the screenshot below. The name is not important; make sure to copy the token.
+
+Configure a global environment variable named "NPM_AUTH_TOKEN" with the value of the generated token.
+
+Instructions for creating a global variable on MacOS can be found [here](https://phoenixnap.com/kb/set-environment-variable-mac).
+Instructions for creating a global variable on Widows can be found [here](https://docs.oracle.com/en/database/oracle/machine-learning/oml4r/1.5.1/oread/creating-and-modifying-environment-variables-on-windows.html#GUID-DD6F9982-60D5-48F6-8270-A27EC53807D0).
+
+Make sure to configure this global variable for building as well.
+
+For local development, you will also need to authenticate on your portal. To do this, you need to create a file named ".env" and place the following environment variables in it:
+
+PROXY_PORTAL_URL=your_portal_full_address
+PORTAL_AUTH_EMAIL=user_login_for_application_development
+PORTAL_AUTH_PASSWORD=user_password
+
+Please replace "your_portal_full_address," "user_login_for_application_development," and "user_password" with your actual portal information.
+
 ### `yarn build`
 
 Builds the app for production to the `dist` folder.<br />
